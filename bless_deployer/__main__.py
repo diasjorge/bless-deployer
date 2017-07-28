@@ -51,6 +51,10 @@ def deploy(args):
 
     subprocess.call('make publish', shell=True)
 
+    upload(args)
+
+
+def upload(args):
     boto3_session = boto3.session.Session(region_name=args.region,
                                           profile_name=args.profile)
     client = boto3_session.client('lambda')
@@ -127,6 +131,13 @@ def main(args=None):
     parser_deploy.add_argument('--build',
                                help='Build lambda dependencies',
                                action='store_true')
+
+    parser_upload = subparsers.add_parser('upload')
+    parser_upload.set_defaults(func=upload)
+    parser_upload.add_argument('-f', '--function-name', required=True,
+                               help='Bless Function name')
+    parser_upload.add_argument('-r', '--role-arn', required=False,
+                               help='Bless Function Role arn')
 
     args = parser.parse_args()
 
