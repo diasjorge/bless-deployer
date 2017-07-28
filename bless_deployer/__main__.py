@@ -46,9 +46,9 @@ def deploy(args):
     os.chmod(CA_DEST, 444)
 
     if args.build:
-        subprocess.call('make lambda-deps', shell=True)
+        subprocess.check_call('make lambda-deps', shell=True)
 
-    subprocess.call('make publish', shell=True)
+    subprocess.check_call('make publish', shell=True)
 
     upload(args)
 
