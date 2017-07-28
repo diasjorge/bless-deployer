@@ -32,7 +32,6 @@ def config(args):
     cfg_parser = SafeConfigParser()
     cfg_parser.read(cfg_file)
 
-    cfg_parser.set(BLESS_CA_KEY, 'kms_key_id', args.kms_key)
     cfg_parser.set(BLESS_CA_KEY, args.region + '_password', encrypted_password)
     cfg_parser.set(BLESS_CA_KEY, 'ca_private_key_file', 'bless_ca.pem')
     cfg_parser.write(open(args.output_file, 'w'))
@@ -121,7 +120,6 @@ def main(args=None):
                                help='Bless deploy configuration file')
     parser_deploy.add_argument('-c', '--deploy-args',
                                help='Deploy Arguments File')
-
     parser_deploy.add_argument('-f', '--function-name', required=True,
                                help='Bless Function name')
     parser_deploy.add_argument('-r', '--role-arn', required=False,
