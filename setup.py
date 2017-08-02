@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='bless_deployer',
-    version='0.0.2',
+    version='0.0.3.dev0',
     description='Create configurations and deploy Bless to AWS',
     author='Jorge Dias',
     author_email='jorge@mrdias.com',
